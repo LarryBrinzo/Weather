@@ -49,7 +49,7 @@
             app:layout_constraintTop_toTopOf="parent" android:id="@+id/relativeLayout">
 
         <LinearLayout
-                android:id="@+id/my_view"
+                android:id="@+id/forecast_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

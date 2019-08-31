@@ -3,8 +3,6 @@ package com.weather.LoadingScreen.API
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
 
-
-
 class CurrentWeatherApi{
 
     companion object {

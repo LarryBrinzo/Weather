@@ -4,8 +4,6 @@ interface ContractInterface {
 
     interface View {
         fun initView()
-        fun updateLocationData()
-        fun updateForecastData()
     }
 
     interface Presenter {

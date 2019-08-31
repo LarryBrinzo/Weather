@@ -7,15 +7,13 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
+import android.view.View
+import android.view.animation.TranslateAnimation
 import android.widget.TextView
-import android.widget.Toast
-import com.weather.DataClass.CurrentTemperatureDataClass
 import com.weather.DataClass.ForecastDataClass
 import com.weather.DataClass.ForecastDay
 import com.weather.ErrorScreen.ErrorScreenActivity
 import com.weather.LoadingScreen.API.CurrentWeatherApi
-import com.weather.LoadingScreen.EndPoints.CurrentTemperatureEndpoint
 import com.weather.LoadingScreen.EndPoints.ForecastEndpoint
 import com.weather.R
 import com.weather.WeatherInfo.Adapter.WeatherForecastAdapter
@@ -24,7 +22,6 @@ import com.weather.WeatherInfo.WeatherPresenter.WeatherActivityPresenter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
 
 class WeatherActivity : AppCompatActivity(), ContractInterface.View {
 
@@ -33,6 +30,7 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
     lateinit var forecastRecycle : RecyclerView
     lateinit var latitude: String
     lateinit var longitude: String
+    lateinit var forecast_layout: View
     private var presenter : WeatherActivityPresenter ? = null
     lateinit var forecastData: List<ForecastDay>
     lateinit var forecastAdapter: WeatherForecastAdapter
@@ -46,6 +44,7 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
         currentLocation = findViewById(R.id.currentlocation)
         forecastRecycle = findViewById(R.id.forecastrecycle)
         forecastrecycle = findViewById(R.id.forecastrecycle)
+        forecast_layout = findViewById(R.id.forecast_layout)
 
         presenter = WeatherActivityPresenter(this)
 
@@ -53,6 +52,8 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
     }
 
     override fun initView() {
+
+        forecast_layout.setVisibility(View.INVISIBLE)
         currentLocation.text = presenter?.getLocation()
         currentTemprature.text = presenter?.getTemprature()
 
@@ -63,12 +64,6 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
         getWeatherForecast(latitude, longitude)
     }
 
-    override fun updateLocationData() {
-    }
-
-    override fun updateForecastData() {
-
-    }
 
     fun getWeatherForecast(lat: String, lon: String){
 
@@ -103,6 +98,21 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
         forecastrecycle.setItemAnimator(DefaultItemAnimator())
         forecastrecycle .setAdapter(forecastAdapter)
 
+        slideUp(forecast_layout)
+    }
+
+    fun slideUp(view: View) {
+        view.setVisibility(View.VISIBLE)
+        val animate = TranslateAnimation(
+            0f, // fromXDelta
+            0f, // toXDelta
+            view.height.toFloat(),
+            0f// fromYDelta
+
+        )                // toYDelta
+        animate.setDuration(2000)
+        animate.setFillAfter(true)
+        view.startAnimation(animate)
     }
 
     private fun launchErrorActivity(){

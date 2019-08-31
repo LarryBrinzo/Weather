@@ -23,23 +23,30 @@ class WeatherForecastAdapter(private val list: List<ForecastDay>, private val co
 
     override fun onBindViewHolder(holder: MyHoder, @SuppressLint("RecyclerView") position: Int) {
 
-        var day: String = list[position].date
+        val date: String = list[position].date
+        holder.day.text=changeDateToDay(date)
 
-        val df = SimpleDateFormat("yyyy-MM-dd")
-        val startDate = df.parse(day)
+        val currentTemperature=list[position].day.avgtemp_c
+        holder.temp.text=tempSetup(currentTemperature)
 
-        val sdf = SimpleDateFormat("EEEE")
+    }
+
+    private fun tempSetup(Temperature: String): String{
+
+        val Temp : String=Temperature.substring(0, Temperature.indexOf('.'))
+        return "$Temp°"
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun changeDateToDay(date: String): String{
+
+        var df = SimpleDateFormat("yyyy-MM-dd")
+        val startDate = df.parse(date)
+
+        df = SimpleDateFormat("EEEE")
         val d = startDate
-        val dayOfTheWeek = sdf.format(d)
 
-        holder.day.text=dayOfTheWeek
-
-        var currentTemperature=list[position].day.avgtemp_c
-        currentTemperature=currentTemperature!!.substring(0, currentTemperature.indexOf('.'))
-        currentTemperature="$currentTemperature°"
-
-        holder.temp.text=currentTemperature
-
+        return df.format(d)
     }
 
     override fun getItemCount(): Int {

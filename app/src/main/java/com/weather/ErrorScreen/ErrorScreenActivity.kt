@@ -4,9 +4,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.weather.LoadingScreen.View.LoadingScreenActivity
 import com.weather.R
-import java.util.*
-import kotlin.concurrent.schedule
 
 class ErrorScreenActivity : AppCompatActivity() {
 
@@ -23,10 +22,8 @@ class ErrorScreenActivity : AppCompatActivity() {
     }
 
     private fun launchWeatherActivity(){
-        Timer("SettingUp", false).schedule(1000) {
-            val intent = Intent(applicationContext, ErrorScreenActivity::class.java)
+            val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
             startActivity(intent)
             finishAffinity()
-        }
     }
 }

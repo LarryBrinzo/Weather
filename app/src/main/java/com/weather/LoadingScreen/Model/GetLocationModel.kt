@@ -17,15 +17,14 @@ import android.location.LocationManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.weather.ErrorScreen.ErrorScreenActivity
 import com.weather.LoadingScreen.View.LoadingScreenActivity
-import com.weather.WeatherInfo.View.WeatherActivity
 import java.io.IOException
 import java.util.*
 import kotlin.concurrent.schedule
 
-open class GetLocationModel(_context: Context,_locationManager: LocationManager): AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
+@SuppressLint("Registered")
+open class GetLocationModel(_context: Context, _locationManager: LocationManager): AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
     internal lateinit var mLastLocation: Location
     val context: Context=_context
@@ -126,8 +125,6 @@ open class GetLocationModel(_context: Context,_locationManager: LocationManager)
                 LocationSettingsStatusCodes.RESOLUTION_REQUIRED ->
 
                     try {
-                        // Show the dialog by calling startResolutionForResult(), and check the result
-                        // in onActivityResult().
                         status.startResolutionForResult(context as Activity?, REQUEST_CHECK_SETTINGS)
                     } catch (e: IntentSender.SendIntentException) {
                     }
