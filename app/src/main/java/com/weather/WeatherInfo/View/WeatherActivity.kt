@@ -1,7 +1,5 @@
 package com.weather.WeatherInfo.View
 
-import android.content.Context
-import android.location.LocationManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
@@ -9,7 +7,6 @@ import android.widget.TextView
 import com.weather.R
 import com.weather.WeatherInfo.Contract.ContractInterface
 import com.weather.WeatherInfo.WeatherPresenter.WeatherActivityPresenter
-
 
 class WeatherActivity : AppCompatActivity(), ContractInterface.View {
 
@@ -34,10 +31,10 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
 
     override fun initView() {
         currentLocation.text = presenter?.getLocation()
+        currentTemprature.text = presenter?.getTemprature()
     }
 
     override fun updateLocationData() {
-        currentLocation.text = presenter?.getLocation()
     }
 
     override fun updateForecastData() {

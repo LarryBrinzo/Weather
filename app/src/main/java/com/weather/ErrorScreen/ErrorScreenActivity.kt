@@ -1,12 +1,10 @@
 package com.weather.ErrorScreen
 
-import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.weather.R
-import com.weather.WeatherInfo.View.WeatherActivity
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -21,6 +19,7 @@ class ErrorScreenActivity : AppCompatActivity() {
         retry.setOnClickListener {
             launchWeatherActivity()
         }
+
     }
 
     private fun launchWeatherActivity(){

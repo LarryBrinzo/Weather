@@ -9,7 +9,10 @@ class WeatherActivityModel(private val context: Context): Model{
 
     private lateinit var currentTemprature : String
 
-    override fun getTemprature() = currentTemprature
+    override fun getTemprature(): String{
+        val pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        return pref.getString("CurrentTemperature", null)
+    }
 
     override fun getLocation(): String{
         val pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE)

@@ -19,6 +19,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.weather.ErrorScreen.ErrorScreenActivity
+import com.weather.LoadingScreen.View.LoadingScreenActivity
 import com.weather.WeatherInfo.View.WeatherActivity
 import java.io.IOException
 import java.util.*
@@ -234,7 +235,8 @@ open class GetLocationModel(_context: Context,_locationManager: LocationManager)
                     locationsave.putString("CurrentLocation", currentLocation)
                     locationsave.apply()
 
-                    launchWeatherActivity()
+                    LoadingScreenActivity.getCurrentTemp(location.latitude.toString(),location.longitude.toString(),context)
+
                 }
 
                 else{
@@ -248,16 +250,9 @@ open class GetLocationModel(_context: Context,_locationManager: LocationManager)
 
     }
 
-    private fun launchWeatherActivity(){
-        Timer("SettingUp", false).schedule(1000) {
-            val intent = Intent(context, WeatherActivity::class.java)
-            context.startActivity(intent)
-            (context as Activity).finishAffinity()
-        }
-    }
 
     private fun launchErrorActivity(){
-        Timer("SettingUp", false).schedule(1000) {
+        Timer("SettingUp", false).schedule(300) {
             val intent = Intent(context, ErrorScreenActivity::class.java)
             context.startActivity(intent)
             (context as Activity).finishAffinity()

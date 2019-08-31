@@ -10,10 +10,7 @@ class WeatherActivityPresenter(context: Context): Presenter{
     private var model: Model = WeatherActivityModel(context)
 
 
-    override fun getTemprature(): String {
-
-        return model.getTemprature()
-    }
+    override fun getTemprature() = model.getTemprature()
 
     override fun getLocation() = model.getLocation()
 
