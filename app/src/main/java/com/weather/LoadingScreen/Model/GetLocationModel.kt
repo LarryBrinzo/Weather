@@ -233,6 +233,8 @@ open class GetLocationModel(_context: Context,_locationManager: LocationManager)
                     @SuppressLint("CommitPrefEdits") val locationsave = pref.edit()
 
                     locationsave.putString("CurrentLocation", currentLocation)
+                    locationsave.putString("CurrentLatitude", location.latitude.toString())
+                    locationsave.putString("CurrentLongitude", location.longitude.toString())
                     locationsave.apply()
 
                     LoadingScreenActivity.getCurrentTemp(location.latitude.toString(),location.longitude.toString(),context)

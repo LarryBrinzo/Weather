@@ -9,9 +9,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import com.weather.DataClass.CurrentWeatherDataClass
+import com.weather.DataClass.CurrentTemperatureDataClass
 import com.weather.ErrorScreen.ErrorScreenActivity
-import com.weather.LoadingScreen.API.CurrentTemperatureApi
+import com.weather.LoadingScreen.API.CurrentWeatherApi
 import com.weather.LoadingScreen.EndPoints.CurrentTemperatureEndpoint
 import com.weather.LoadingScreen.Model.GetLocationModel
 import com.weather.R
@@ -41,17 +41,17 @@ class LoadingScreenActivity : AppCompatActivity() {
     companion object {
 
         val key = "b37b5819be4b4c3fb2e175517192808"
-        val currentWeather: CurrentTemperatureEndpoint = CurrentTemperatureApi.getCurrentWeather()!!.create(
+        val currentWeather: CurrentTemperatureEndpoint = CurrentWeatherApi.getCurrentWeather()!!.create(
             CurrentTemperatureEndpoint::class.java)
 
         fun getCurrentTemp(lat: String, lon: String, context: Context){
 
             val loc = "$lat , $lon"
 
-            val call: Call<CurrentWeatherDataClass> = currentWeather.getCurrentTemp(key,loc)
+            val call: Call<CurrentTemperatureDataClass> = currentWeather.getCurrentTemp(key,loc)
 
-            call.enqueue(object : Callback<CurrentWeatherDataClass> {
-                override fun onResponse(call: Call<CurrentWeatherDataClass>, response: Response<CurrentWeatherDataClass>) {
+            call.enqueue(object : Callback<CurrentTemperatureDataClass> {
+                override fun onResponse(call: Call<CurrentTemperatureDataClass>, response: Response<CurrentTemperatureDataClass>) {
 
                     var currentTemperature=response.body()?.current?.temp_c
                     currentTemperature=currentTemperature!!.substring(0, currentTemperature.indexOf('.'))
@@ -65,7 +65,7 @@ class LoadingScreenActivity : AppCompatActivity() {
                     launchWeatherActivity(context)
                 }
 
-                override fun onFailure(call: Call<CurrentWeatherDataClass>, t: Throwable) {
+                override fun onFailure(call: Call<CurrentTemperatureDataClass>, t: Throwable) {
                     launchErrorActivity(context)
                 }
 

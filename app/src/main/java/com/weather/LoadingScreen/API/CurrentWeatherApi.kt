@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 
 
 
-class CurrentTemperatureApi{
+class CurrentWeatherApi{
 
     companion object {
 
