@@ -1,18 +1,19 @@
 package com.weather.WeatherInfo.WeatherPresenter
 
+import android.content.Context
+import android.location.LocationManager
 import com.weather.WeatherInfo.Contract.ContractInterface.*
 import com.weather.WeatherInfo.Model.WeatherActivityModel
 
-class WeatherActivityPresenter(_view: View): Presenter{
+class WeatherActivityPresenter(context: Context): Presenter{
 
-    private var view: View = _view
-    private var model: Model = WeatherActivityModel()
+    private var model: Model = WeatherActivityModel(context)
 
-    init {
-        view.initView()
+
+    override fun getTemprature(): String {
+
+        return model.getTemprature()
     }
-
-    override fun getTemprature() = model.getTemprature()
 
     override fun getLocation() = model.getLocation()
 

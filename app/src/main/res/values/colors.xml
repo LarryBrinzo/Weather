@@ -5,7 +5,10 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="background">#f5f6f7</color>
+    <color name="errorbackground">#e85959</color>
+    <color name="retrybutton">#4a4a4a</color>
     <color name="tempcolor">#2a2a2a</color>
     <color name="loccolor">#556799</color>
+    <color name="white">#fff</color>
 
 </resources>

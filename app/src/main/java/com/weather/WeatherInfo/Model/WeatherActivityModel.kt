@@ -1,17 +1,19 @@
 package com.weather.WeatherInfo.Model
 
+import android.content.Context
+import android.location.LocationManager
+import com.weather.LoadingScreen.Model.GetLocationModel
 import com.weather.WeatherInfo.Contract.ContractInterface.*
 
-class WeatherActivityModel: Model{
+class WeatherActivityModel(private val context: Context): Model{
 
     private lateinit var currentTemprature : String
-    private lateinit var currentLocation : String
 
     override fun getTemprature() = currentTemprature
 
     override fun getLocation(): String{
-
-        return currentLocation
+        val pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        return pref.getString("CurrentLocation", null)
     }
 
 }
