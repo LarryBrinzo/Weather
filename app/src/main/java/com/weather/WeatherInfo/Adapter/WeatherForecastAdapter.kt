@@ -34,7 +34,7 @@ class WeatherForecastAdapter(private val list: List<ForecastDay>, private val co
     private fun tempSetup(Temperature: String): String{
 
         val Temp : String=Temperature.substring(0, Temperature.indexOf('.'))
-        return "$Temp°"
+        return "$Temp C"
     }
 
     @SuppressLint("SimpleDateFormat")

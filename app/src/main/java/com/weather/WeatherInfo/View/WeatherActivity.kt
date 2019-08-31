@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.TextView
 import com.weather.DataClass.ForecastDataClass
@@ -103,14 +104,13 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
 
     fun slideUp(view: View) {
         view.setVisibility(View.VISIBLE)
-        val animate = TranslateAnimation(
-            0f, // fromXDelta
-            0f, // toXDelta
-            view.height.toFloat(),
-            0f// fromYDelta
-
-        )                // toYDelta
-        animate.setDuration(2000)
+        val animate: Animation = TranslateAnimation(
+            0f,
+            0f,
+            500f,
+            0f
+        )
+        animate.setDuration(500)
         animate.setFillAfter(true)
         view.startAnimation(animate)
     }
