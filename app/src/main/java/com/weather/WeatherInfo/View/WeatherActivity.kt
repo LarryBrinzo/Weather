@@ -33,7 +33,7 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
     lateinit var longitude: String
     lateinit var forecast_layout: View
     private var presenter : WeatherActivityPresenter ? = null
-    lateinit var forecastData: List<ForecastDay>
+    lateinit var forecastData: MutableList<ForecastDay>
     lateinit var forecastAdapter: WeatherForecastAdapter
     lateinit var forecastrecycle: RecyclerView
 
@@ -69,7 +69,7 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
     fun getWeatherForecast(lat: String, lon: String){
 
         val loc = "$lat , $lon"
-        val days = "4"
+        val days = "5"
         val forecast: ForecastEndpoint = CurrentWeatherApi.getCurrentWeather()!!.create(
             ForecastEndpoint::class.java)
 
@@ -79,7 +79,8 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
         call.enqueue(object : Callback<ForecastDataClass> {
             override fun onResponse(call: Call<ForecastDataClass>, response: Response<ForecastDataClass>) {
 
-                forecastData = response.body()?.forecast?.forecastday!!
+                forecastData = (response.body()?.forecast?.forecastday as MutableList<ForecastDay>?)!!
+                forecastData.removeAt(0)
                 adapterSetup()
             }
 
