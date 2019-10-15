@@ -8,7 +8,8 @@ import retrofit2.http.Query
 
 interface CurrentTemperatureEndpoint{
 
-    @GET("current.json?")
-    fun getCurrentTemp(@Query("key")key: String, @Query("q")location: String): Call<CurrentTemperatureDataClass>
+    @GET("current?")
+    fun getCurrentTemp(@Query("access_key")access_key: String, @Query("query")location: String): Call<CurrentTemperatureDataClass>
 
 }
+

@@ -7,6 +7,7 @@ import android.content.Intent
 import android.location.LocationManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import com.weather.DataClass.CurrentTemperatureDataClass
@@ -30,6 +31,8 @@ class LoadingScreenActivity : AppCompatActivity() {
 
         val loadimg: ImageView=findViewById(R.id.loadimg)
 
+        Log.e("test : ","1")
+
         loadimg.startAnimation(
             AnimationUtils.loadAnimation(applicationContext, R.anim.rotate_indefinitely))
 
@@ -40,7 +43,7 @@ class LoadingScreenActivity : AppCompatActivity() {
 
     companion object {
 
-        val key = "b37b5819be4b4c3fb2e175517192808"
+        val key = "65ca197ff89ad5bcafa0005cc4c163e0"
         val currentWeather: CurrentTemperatureEndpoint = CurrentWeatherApi.getCurrentWeather()!!.create(
             CurrentTemperatureEndpoint::class.java)
 
@@ -53,8 +56,7 @@ class LoadingScreenActivity : AppCompatActivity() {
             call.enqueue(object : Callback<CurrentTemperatureDataClass> {
                 override fun onResponse(call: Call<CurrentTemperatureDataClass>, response: Response<CurrentTemperatureDataClass>) {
 
-                    var currentTemperature=response.body()?.current?.temp_c
-                    currentTemperature=currentTemperature!!.substring(0, currentTemperature.indexOf('.'))
+                    var currentTemperature=response.body()?.current?.temperature
                     currentTemperature="$currentTemperature°"
 
                     val pref = context.getSharedPreferences("MyPref", MODE_PRIVATE)

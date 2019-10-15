@@ -8,7 +8,7 @@ class CurrentWeatherApi{
     companion object {
 
         private var retrofit: Retrofit ?=null
-        private val Api_Url: String = "https://api.apixu.com/v1/"
+        private val Api_Url: String = "http://api.weatherstack.com/"
 
         fun getCurrentWeather(): Retrofit? {
             if (retrofit == null) {

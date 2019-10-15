@@ -62,7 +62,7 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
         latitude = pref.getString("CurrentLatitude", null)
         longitude = pref.getString("CurrentLongitude", null)
 
-        getWeatherForecast(latitude, longitude)
+      //  getWeatherForecast(latitude, longitude)
     }
 
 
@@ -124,7 +124,7 @@ class WeatherActivity : AppCompatActivity(), ContractInterface.View {
     }
 
     companion object {
-        val key = "b37b5819be4b4c3fb2e175517192808"
+        val key = "65ca197ff89ad5bcafa0005cc4c163e0"
     }
 
 }

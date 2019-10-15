@@ -23,7 +23,7 @@ class CurrentTemperatureApiTest{
             LoadingScreenActivity.key,loc)
 
         try {
-            //Magic is here at .execute() instead of .enqueue()
+
             val response = call.execute()
             val authResponse = response.body()?.current?.temp_c
 

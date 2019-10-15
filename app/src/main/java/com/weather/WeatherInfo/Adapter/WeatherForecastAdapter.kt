@@ -26,9 +26,8 @@ class WeatherForecastAdapter(private val list: List<ForecastDay>, private val co
         val date: String = list[position].date
         holder.day.text=changeDateToDay(date)
 
-        val currentTemperature=list[position].day.avgtemp_c
+        val currentTemperature=list[position].day.avgtemp
         holder.temp.text=tempSetup(currentTemperature)
-
     }
 
     private fun tempSetup(Temperature: String): String{
